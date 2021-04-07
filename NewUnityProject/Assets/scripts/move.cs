@@ -9,6 +9,8 @@ public class move : MonoBehaviour
     public float speed;
     public float jump;
     public bool flag;
+    public GameObject bubble_Prefab;
+    //[SerializeField] public GameObject prefaninstance;
     private void Start()
     {
         speed = 1.0f;
@@ -26,11 +28,13 @@ public class move : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             _transform.position += new Vector3(speed*Time.deltaTime,0,0);
+            Instantiate(bubble_Prefab, new Vector3(_transform.position.x-1,_transform.position.y,_transform.position.z), Quaternion.identity);
         }
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             _transform.position -= new Vector3(speed*Time.deltaTime,0,0);
+            Instantiate(bubble_Prefab, new Vector3(_transform.position.x+1,_transform.position.y,_transform.position.z), Quaternion.identity);
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
